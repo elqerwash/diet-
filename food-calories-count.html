@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حساب سعرات الطعام | متتبع التغذية</title>
+    <meta name="description" content="آلة حاسبة دقيقة للسعرات الحرارية والقيمة الغذائية">
+    <meta name="keywords" content="سعرات حرارية، تغذية، متتبع الطعام، صحة، نظام غذائي، مغذيات">
+    <style>
+        :root {
+            --dark-bg: #121212;
+            --dark-card: #1E1E1E;
+            --text-primary: #E0E0E0;
+            --text-secondary: #B0B0B0;
+            --accent-color: #4CAF50;
+        }
+
+        body {
+            font-family: 'Cairo', 'Arial', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-image: 
+                linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="%23121212"/><path d="M50 50 L100 100 L150 50 M50 100 L100 150 L150 100" stroke="%23333" stroke-width="2" fill="none"/></svg>'),
+                url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAEsASwDASIAAhEBAxEB/8QAHQABAAIDAQEBAQAAAAAAAAAAAAYHBAUIAwECCf/EAEoQAAEDBAAEAgUIBQkGBwAAAAECAwQABQYRBxIhMRNBCBQiYXEVMlKBkaGyI0JyscEWJDM0YnSCktEXQ1Oj4fAkNVNWZIXS/8QAGwEBAAMBAQEBAAAAAAAAAAAAAAECAwQFBgf/xAA1EQACAQIEAwUHAwQDAAAAAAAAAQIDEQQSITFBUWEFE3GBkRQiMqGx0fBCweEjUmLxFYLi/9oADAMBAAIRAxEAPwD9U0pSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgFKUoBSlKAUpSgP/9k='),
+                url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAEsASwDASIAAhEBAxEB/8QAHQABAAICAwEAAAAAAAAAAAAACAkBBgcCAwQF/8QAQhAAAQMCAwMJBQUHBAMBAAAAAQACAwQRBQYhBxIxCBMiQVFhcYGRFDJyobEVQlKCwSMzYnOSotEWJENT8LPh8f/EABsBAQACAwEBAAAAAAAAAAAAAAABAgMEBQYH/8QAMREAAgIBAwIEBAUEAwAAAAAAAAECAxEEBSESMQZBUXETImGBFDKRofBCscHRFVLh/9oADAMBAAIRAxEAPwC1KUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUApSlAKUpQClKUB/9k=');
+            background-repeat: repeat;
+            background-size: 100px, 150px, 200px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--dark-card);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-secondary);
+            text-align: right;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--dark-bg);
+            border: 1px solid #333;
+            color: var(--text-primary);
+            border-radius: 6px;
+            text-align: right;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #results {
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background-color: var(--dark-bg);
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .result-card h2 {
+            color: var(--accent-color);
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            text-align: right;
+        }
+
+        .error {
+            color: #FF6B6B;
+            background-color: rgba(255, 107, 107, 0.1);
+            border: 1px solid #FF6B6B;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+                margin: 0 10px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>حساب السعرات الحرارية للطعام</h1>
+        
+        <div class="input-group">
+            <label for="apiKey">مفتاح واجهة برمجة التطبيقات Groq</label>
+            <input type="text" id="apiKey" placeholder="أدخل مفتاح واجهة برمجة التطبيقات الخاص بك">
+            <small><a href="https://console.groq.com/keys?" target="_blank" style="color: var(--text-secondary);">احصل على المفتاح</a></small>
+        </div>
+
+        <div class="input-group">
+            <label for="mealName">اسم الوجبة</label>
+            <input type="text" id="mealName" placeholder="أدخل اسم الطعام (مثل: تفاحة، صدر دجاج)">
+        </div>
+
+        <div class="input-group">
+            <label for="portionSize">حجم الحصة</label>
+            <input type="number" id="portionSize" placeholder="أدخل الكمية">
+        </div>
+
+        <div class="input-group">
+            <label for="portionUnit">وحدة الحصة</label>
+            <select id="portionUnit">
+                <option value="grams">جرام</option>
+                <option value="cups">كوب</option>
+                <option value="pieces">قطعة</option>
+                <option value="ounces">أونصة</option>
+                <option value="tablespoons">ملعقة كبيرة</option>
+            </select>
+        </div>
+
+        <button onclick="calculateCalories()">احسب</button>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        async function calculateCalories() {
+            const apiKey = document.getElementById('apiKey').value;
+            const mealName = document.getElementById('mealName').value;
+            const portionSize = document.getElementById('portionSize').value;
+            const portionUnit = document.getElementById('portionUnit').value;
+            const resultsDiv = document.getElementById('results');
+
+            // مسح النتائج السابقة
+            resultsDiv.innerHTML = '';
+
+            // التحقق من المدخلات
+            if (!apiKey) {
+                showError('الرجاء إدخال مفتاح واجهة برمجة التطبيقات');
+                return;
+            }
+
+            if (!mealName) {
+                showError('الرجاء إد
